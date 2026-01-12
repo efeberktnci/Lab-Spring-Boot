@@ -1,0 +1,41 @@
+<!-- src/main/resources/templates/home.html -->
+<!DOCTYPE html>
+<html lang="en" xmlns:th="http://www.thymeleaf.org">
+<head>
+  <meta charset="UTF-8">
+  <title>Home</title>
+</head>
+<body>
+
+<h2>You are logged in</h2>
+
+<p>
+  Logged in as:
+  <b th:text="${email}">email</b>
+</p>
+
+<hr>
+
+<!-- USER endpoint (USER + ADMIN) -->
+<p>
+  <a href="/user/ping">USER PING</a>
+</p>
+
+<!-- ADMIN endpoint (herkes görür, USER basarsa 403 alır) -->
+<p>
+  <a href="/admin/ping">ADMIN PING</a>
+</p>
+
+<!-- SADECE ADMIN görebilir -->
+<p th:if="${isAdmin}">
+  <a href="/admin/users">👤 View All Users</a>
+</p>
+
+<hr>
+
+<form th:action="@{/logout}" method="post">
+  <button type="submit">Logout</button>
+</form>
+
+</body>
+</html>

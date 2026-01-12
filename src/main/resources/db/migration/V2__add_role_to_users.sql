@@ -1,0 +1,1 @@
+-- No-op: role column already exists in V1

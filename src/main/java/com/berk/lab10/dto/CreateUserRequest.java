@@ -1,19 +1,10 @@
 package com.berk.lab10.dto;
 
-import jakarta.validation.constraints.Email;
-import jakarta.validation.constraints.NotBlank;
-
 public class CreateUserRequest {
-
-    @NotBlank
     private String username;
-
-    @NotBlank
-    @Email
     private String email;
-
-    @NotBlank
     private String password;
+    private String role; // optional
 
     public CreateUserRequest() {}
 
@@ -25,4 +16,7 @@ public class CreateUserRequest {
 
     public String getPassword() { return password; }
     public void setPassword(String password) { this.password = password; }
+
+    public String getRole() { return role; }
+    public void setRole(String role) { this.role = role; }
 }

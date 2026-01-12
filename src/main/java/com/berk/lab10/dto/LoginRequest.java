@@ -1,15 +1,8 @@
+// 8) src/main/java/com/berk/lab10/dto/LoginRequest.java
 package com.berk.lab10.dto;
 
-import jakarta.validation.constraints.Email;
-import jakarta.validation.constraints.NotBlank;
-
 public class LoginRequest {
-
-    @NotBlank
-    @Email
     private String email;
-
-    @NotBlank
     private String password;
 
     public LoginRequest() {}

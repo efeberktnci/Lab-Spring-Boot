@@ -1,0 +1,32 @@
+<!-- src/main/resources/templates/admin-users.html -->
+<!doctype html>
+<html lang="en" xmlns:th="http://www.thymeleaf.org">
+<head>
+  <meta charset="UTF-8" />
+  <title>Users (Admin)</title>
+</head>
+<body>
+<h2>All Users (Admin Only)</h2>
+
+<table border="1" cellpadding="8">
+  <thead>
+  <tr>
+    <th>ID</th>
+    <th>Username</th>
+    <th>Email</th>
+    <th>Role</th>
+  </tr>
+  </thead>
+  <tbody>
+  <tr th:each="u : ${users}">
+    <td th:text="${u.id}"></td>
+    <td th:text="${u.username}"></td>
+    <td th:text="${u.email}"></td>
+    <td th:text="${u.role}"></td>
+  </tr>
+  </tbody>
+</table>
+
+<p><a href="/home">Back to home</a></p>
+</body>
+</html>

@@ -1,0 +1,48 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org">
+<head>
+    <meta charset="UTF-8" />
+    <title>Register</title>
+</head>
+<body>
+<h2>Register</h2>
+
+<div th:if="${param.error == 'exists'}">
+    <p style="color:red;">Email already exists</p>
+</div>
+
+<form method="post" action="/register">
+    <div>
+        <label>Username</label>
+        <input type="text" name="username" required />
+    </div>
+
+    <div>
+        <label>Email</label>
+        <input type="email" name="email" required />
+    </div>
+
+    <div>
+        <label>Password</label>
+        <input type="password" name="password" required />
+    </div>
+
+    <!-- Admin oluşturmak istersen doldurursun -->
+    <div>
+        <label>Role (optional)</label>
+        <input type="text" name="role" placeholder="ROLE_ADMIN or ROLE_USER" />
+    </div>
+
+    <div>
+        <label>Admin Secret (optional)</label>
+        <input type="text" name="adminSecret" placeholder="ADMIN_REGISTER_SECRET" />
+    </div>
+
+    <input type="hidden" th:name="${_csrf.parameterName}" th:value="${_csrf.token}" />
+
+    <button type="submit">Register</button>
+</form>
+
+<p><a href="/login">Back to Login</a></p>
+</body>
+</html>
