@@ -1,5 +1,6 @@
 package com.berk.lab10.service;
 
+import com.berk.lab10.dto.AuthResponse;
 import com.berk.lab10.dto.UserRequest;
 import com.berk.lab10.dto.UserResponse;
 import com.berk.lab10.model.User;
@@ -25,7 +26,6 @@ public class UserService {
     }
 
     public UserResponse createUser(UserRequest request) {
-        // basit kontrol (istersen kaldırabilirsin)
         if (userRepository.existsByEmail(request.getEmail())) {
             throw new RuntimeException("Email already exists");
         }
@@ -33,9 +33,25 @@ public class UserService {
         User user = new User();
         user.setUsername(request.getUsername());
         user.setEmail(request.getEmail());
-        user.setPassword(request.getPassword());
+        user.setPassword(request.getPassword()); // şimdilik plain
 
         User saved = userRepository.save(user);
         return new UserResponse(saved.getId(), saved.getUsername(), saved.getEmail());
     }
+
+    // ✅ LOGIN / AUTHENTICATE
+    public AuthResponse authenticate(String email, String password) {
+        User user = userRepository.findByEmail(email).orElse(null);
+
+        if (user == null) {
+            return new AuthResponse(false, "Invalid credentials", null, null);
+        }
+
+        if (!user.getPassword().equals(password)) {
+            return new AuthResponse(false, "Invalid credentials", null, null);
+        }
+
+        return new AuthResponse(true, "Login successful", user.getId(), user.getEmail());
+    }
+
 }
