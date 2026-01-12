@@ -1,11 +1,12 @@
 package com.berk.lab10.service;
 
+import com.berk.lab10.dto.UserRequest;
+import com.berk.lab10.dto.UserResponse;
 import com.berk.lab10.model.User;
 import com.berk.lab10.repository.UserRepository;
 import org.springframework.stereotype.Service;
 
 import java.util.List;
-
 
 @Service
 public class UserService {
@@ -16,19 +17,25 @@ public class UserService {
         this.userRepository = userRepository;
     }
 
-    public User create(User user) {
-        return userRepository.save(user);
+    public List<UserResponse> getAllUsers() {
+        return userRepository.findAll()
+                .stream()
+                .map(u -> new UserResponse(u.getId(), u.getUsername(), u.getEmail()))
+                .toList();
     }
 
-    public List<User> getAll() {
-        return userRepository.findAll();
-    }
+    public UserResponse createUser(UserRequest request) {
+        // basit kontrol (istersen kaldırabilirsin)
+        if (userRepository.existsByEmail(request.getEmail())) {
+            throw new RuntimeException("Email already exists");
+        }
 
-    public User getById(Long id) {
-        return userRepository.findById(id).orElseThrow(() -> new RuntimeException("User not found"));
-    }
+        User user = new User();
+        user.setUsername(request.getUsername());
+        user.setEmail(request.getEmail());
+        user.setPassword(request.getPassword());
 
-    public void delete(Long id) {
-        userRepository.deleteById(id);
+        User saved = userRepository.save(user);
+        return new UserResponse(saved.getId(), saved.getUsername(), saved.getEmail());
     }
 }

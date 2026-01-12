@@ -1,6 +1,7 @@
 package com.berk.lab10.controller;
 
-import com.berk.lab10.model.User;
+import com.berk.lab10.dto.UserRequest;
+import com.berk.lab10.dto.UserResponse;
 import com.berk.lab10.service.UserService;
 import org.springframework.web.bind.annotation.*;
 
@@ -16,23 +17,13 @@ public class UserController {
         this.userService = userService;
     }
 
-    @PostMapping
-    public User create(@RequestBody User user) {
-        return userService.create(user);
-    }
-
     @GetMapping
-    public List<User> getAll() {
-        return userService.getAll();
+    public List<UserResponse> getAllUsers() {
+        return userService.getAllUsers();
     }
 
-    @GetMapping("/{id}")
-    public User getById(@PathVariable Long id) {
-        return userService.getById(id);
-    }
-
-    @DeleteMapping("/{id}")
-    public void delete(@PathVariable Long id) {
-        userService.delete(id);
+    @PostMapping
+    public UserResponse createUser(@RequestBody UserRequest request) {
+        return userService.createUser(request);
     }
 }
