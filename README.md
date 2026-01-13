@@ -114,13 +114,11 @@ src/main/java/com/berk/lab10
 ├── config/
 │   └── SecurityConfig.java           # Spring Security configuration
 ├── controller/
+│   ├── AdminController.java          # Admin permissions manager
 │   ├── AuthController.java           # Login/register endpoints
 │   ├── HomeController.java           # Public pages
 │   └── UserController.java           # User management (ADMIN only)
 ├── dto/
-│   ├── LoginRequest.java             # Login form data
-│   ├── AuthResponse.java             # Login response
-│   ├── UserRequest.java              # User creation data
 │   └── UserResponse.java             # User data (no password)
 ├── model/
 │   └── User.java                     # User entity
