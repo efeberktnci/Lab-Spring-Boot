@@ -1,24 +1,36 @@
 <!DOCTYPE html>
 <html xmlns:th="http://www.thymeleaf.org">
+<!-- Thymeleaf template -->
+
 <head>
   <meta charset="UTF-8" />
   <title>Login</title>
 </head>
+
 <body>
+
 <h2>Login</h2>
+<!-- Login sayfası başlığı -->
 
 <div th:if="${param.error}">
+  <!-- Login başarısız olursa gösterilir -->
+
   <p style="color:red;">Login failed</p>
 </div>
 
 <div th:if="${param.logout}">
+  <!-- Logout sonrası gösterilir -->
+
   <p style="color:green;">Logged out</p>
 </div>
 
 <form method="post" action="/login">
+  <!-- Bu POST isteğini Spring Security yakalar -->
+
   <div>
     <label>Email</label>
     <input type="text" name="email" required />
+    <!-- usernameParameter = email -->
   </div>
 
   <div>
@@ -26,11 +38,18 @@
     <input type="password" name="password" required />
   </div>
 
-  <input type="hidden" th:name="${_csrf.parameterName}" th:value="${_csrf.token}" />
+  <input type="hidden"
+         th:name="${_csrf.parameterName}"
+         th:value="${_csrf.token}" />
+  <!-- CSRF koruması için zorunlu -->
 
   <button type="submit">Login</button>
 </form>
 
-<p><a href="/register">Register</a></p>
+<p>
+  <a href="/register">Register</a>
+</p>
+<!-- Kayıt sayfasına link -->
+
 </body>
 </html>

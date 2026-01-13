@@ -1,6 +1,14 @@
 package com.berk.lab10.dto;
 
+/**
+ * Bu DTO, kullanıcı bilgilerini client’a dönerken kullanılır.
+ *
+ * Önemli:
+ * - Password burada YOK
+ * - Güvenlik için hassas alanlar response’a eklenmez
+ */
 public class UserResponse {
+
     private Integer id;
     private String username;
     private String email;

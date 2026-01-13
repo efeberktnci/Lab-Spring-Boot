@@ -1,4 +1,3 @@
-<!-- src/main/resources/templates/admin-users.html -->
 <!doctype html>
 <html lang="en" xmlns:th="http://www.thymeleaf.org">
 <head>
@@ -9,6 +8,8 @@
 <h2>All Users (Admin Only)</h2>
 
 <table border="1" cellpadding="8">
+  <!-- Kullanıcı listesini göstermek için tablo -->
+
   <thead>
   <tr>
     <th>ID</th>
@@ -19,10 +20,15 @@
   </thead>
   <tbody>
   <tr th:each="u : ${users}">
+    <!-- Controller'dan gelen users listesini döner -->
     <td th:text="${u.id}"></td>
+    <!-- Kullanıcının ID değeri -->
     <td th:text="${u.username}"></td>
+    <!-- Kullanıcının username bilgisi -->
     <td th:text="${u.email}"></td>
+    <!-- Kullanıcının email adresi -->
     <td th:text="${u.role}"></td>
+    <!-- Kullanıcının rolü (ROLE_USER / ROLE_ADMIN) -->
   </tr>
   </tbody>
 </table>

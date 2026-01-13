@@ -3,27 +3,39 @@ package com.berk.lab10.model;
 import jakarta.persistence.*;
 
 @Entity
+// Bu sınıfın bir JPA entity olduğunu söyler.
+// Yani bu sınıf veritabanındaki bir tabloyu temsil eder.
 @Table(name = "users")
+// Veritabanındaki "users" tablosu ile eşleştirilir.
 public class User {
 
     @Id
+    // Bu alan primary key olduğunu belirtir.
     @GeneratedValue(strategy = GenerationType.IDENTITY)
-    private Integer id; // SQLite için INTEGER
+    // ID değeri veritabanı tarafından otomatik üretilir.
+    private Integer id;
 
     @Column(nullable = false)
+    // Kullanıcı adı boş olamaz.
     private String username;
 
     @Column(nullable = false, unique = true)
+    // Email zorunlu ve benzersizdir.
     private String email;
 
     @Column(nullable = false)
+    // Parola boş olamaz (hash’li olarak saklanır).
     private String password;
 
     @Column(nullable = false)
+    // Kullanıcının rolü (ROLE_USER veya ROLE_ADMIN).
+    // Varsayılan olarak ROLE_USER atanır.
     private String role = "ROLE_USER";
 
+    // JPA için zorunlu boş constructor
     public User() {}
 
+    // Getter & Setter metodları
     public Integer getId() { return id; }
     public void setId(Integer id) { this.id = id; }
 
