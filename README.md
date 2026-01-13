@@ -1,4 +1,4 @@
-md# 🔐 Security of Web Applications – Project
+# 🔐 Security of Web Applications – Project
 
 > A comprehensive Spring Boot application implementing **authentication**, **authorization**, and **secure access control** for the Security of Web Applications course.
 
@@ -103,7 +103,7 @@ Or using Maven wrapper:
 
 #### 4. Open in browser
 ```
-http://localhost:8080
+http://localhost:8080/login
 ```
 
 ---
@@ -340,21 +340,3 @@ This is a course project. Contributions are not accepted.
 ## 📄 License
 
 This project is developed for educational purposes.
-
----
-
-## 👨‍💻 Author
-
-**Berk Efendioğlu**  
-Security of Web Applications Course  
-2025
-
----
-
-<div align="center">
-
-**Built with ❤️ using Spring Boot**
-
-[⬆ Back to top](#-security-of-web-applications--project)
-
-</div>
