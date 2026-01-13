@@ -7,8 +7,8 @@ package com.berk.lab10.dto;
  * - Password burada YOK
  * - Güvenlik için hassas alanlar response’a eklenmez
  */
-public class UserResponse {
 
+public class UserResponse {
     private Integer id;
     private String username;
     private String email;
@@ -26,3 +26,4 @@ public class UserResponse {
     public String getEmail() { return email; }
     public String getRole() { return role; }
 }
+
