@@ -1,3 +1,14 @@
+/*
+ Bu controller login ve register (kayıt) işlemlerini yönetir.
+ - Login sayfasını gösterir
+ - Register sayfasını gösterir
+ - Yeni kullanıcı kaydı oluşturur
+ - Admin kaydı için secret key kontrolü yapar
+ - Şifreleri hash’leyerek veritabanına kaydeder
+
+ Kısaca: Kullanıcı sisteme buradan girer veya kayıt olur.
+*/
+
 package com.berk.lab10.controller;
 
 import com.berk.lab10.model.User;

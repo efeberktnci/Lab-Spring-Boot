@@ -1,3 +1,12 @@
+/*
+ Bu sınıf veritabanındaki users tablosunu temsil eden JPA Entity’dir.
+
+ - Kullanıcı bilgileri burada tanımlıdır
+ - Hibernate/JPA bu sınıf üzerinden tabloya erişir
+ - id, username, email, password ve role alanlarını içerir
+
+ Kısaca: Veritabanındaki kullanıcı tablosunun Java karşılığıdır.
+*/
 package com.berk.lab10.model;
 
 import jakarta.persistence.*;

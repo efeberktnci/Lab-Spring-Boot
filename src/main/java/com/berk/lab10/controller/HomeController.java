@@ -1,3 +1,12 @@
+/*
+ Bu controller giriş yaptıktan sonra görülen ana sayfayı (home) yönetir.
+
+ - Login olan kullanıcının email bilgisini gösterir
+ - Kullanıcının ADMIN olup olmadığını kontrol eder
+ - Admin’e özel linklerin gösterilip gösterilmeyeceğine karar verir
+
+ Kısaca: Kullanıcı giriş yaptıktan sonra karşılaştığı ana sayfa burasıdır.
+*/
 package com.berk.lab10.controller;
 
 import org.springframework.security.core.Authentication;

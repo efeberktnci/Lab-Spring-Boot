@@ -1,3 +1,11 @@
+/*
+ Bu servis kullanıcılarla ilgili iş mantığını içerir.
+
+ - Tüm kullanıcıları listeleme işlemini yapar
+ - Entity → DTO dönüşümlerini burada gerçekleştirir
+
+ Kısaca: Controller ile Repository arasındaki mantık katmanıdır.
+*/
 package com.berk.lab10.service;
 
 import com.berk.lab10.dto.UserResponse;

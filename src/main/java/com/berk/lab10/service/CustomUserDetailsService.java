@@ -1,3 +1,12 @@
+/*
+ Bu servis Spring Security tarafından login sırasında kullanılır.
+
+ - Kullanıcıyı email ile veritabanından bulur
+ - Kullanıcının rolünü Spring Security formatına çevirir
+ - Authentication sürecinin temel parçasıdır
+
+ Kısaca: Spring Security’ye “bu kullanıcı kim, rolü ne?” sorusunun cevabını verir.
+*/
 package com.berk.lab10.service;
 
 import com.berk.lab10.model.User;

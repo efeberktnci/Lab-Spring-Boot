@@ -1,5 +1,3 @@
-package com.berk.lab10.dto;
-
 /**
  * Bu DTO, kullanıcı bilgilerini client’a dönerken kullanılır.
  *
@@ -7,6 +5,7 @@ package com.berk.lab10.dto;
  * - Password burada YOK
  * - Güvenlik için hassas alanlar response’a eklenmez
  */
+package com.berk.lab10.dto;
 
 public class UserResponse {
     private Integer id;

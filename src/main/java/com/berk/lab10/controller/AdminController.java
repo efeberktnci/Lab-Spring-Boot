@@ -1,3 +1,14 @@
+/*
+ Bu controller sadece ADMIN yetkisine sahip kullanıcılar için olan sayfaları yönetir.
+
+ - Admin ping endpoint’i ile admin erişimi test edilir
+ - Tüm kullanıcıların listelendiği admin sayfasını döner
+ - @PreAuthorize ile method seviyesinde yetki kontrolü yapılır
+
+ Kısaca: Admin’e özel işlemler burada toplanır.
+*/
+
+
 package com.berk.lab10.controller;
 
 import com.berk.lab10.service.UserService;

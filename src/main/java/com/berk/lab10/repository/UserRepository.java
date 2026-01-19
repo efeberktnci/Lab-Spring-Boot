@@ -1,3 +1,11 @@
+/*
+ Bu interface kullanıcı veritabanı işlemlerini yapmak için kullanılır.
+
+ - JpaRepository sayesinde hazır CRUD işlemleri gelir
+ - Email ile kullanıcı bulma ve varlık kontrolü yapılır
+
+ Kısaca: Veritabanı ile konuşan katmandır.
+*/
 package com.berk.lab10.repository;
 
 import com.berk.lab10.model.User;

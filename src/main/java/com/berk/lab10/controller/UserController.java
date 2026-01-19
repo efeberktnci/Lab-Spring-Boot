@@ -1,3 +1,11 @@
+/*
+ Bu controller USER rolüne sahip kullanıcılar için örnek bir REST endpoint içerir.
+
+ - /user/ping endpoint’i ile USER yetkisi test edilir
+ - Login olmayan kullanıcılar bu endpoint’e erişemez
+
+ Kısaca: USER rolünün çalıştığını göstermek için basit bir test controller’ıdır.
+*/
 package com.berk.lab10.controller;
 
 import org.springframework.web.bind.annotation.*;
