@@ -5,6 +5,7 @@
  - Yeni kullanıcı kaydı oluşturur
  - Admin kaydı için secret key kontrolü yapar
  - Şifreleri hash’leyerek veritabanına kaydeder
+ - Strong password policy uygular
 
  Kısaca: Kullanıcı sisteme buradan girer veya kayıt olur.
 */
@@ -12,36 +13,30 @@
 package com.berk.lab10.controller;
 
 import com.berk.lab10.model.User;
-// Kullanıcı entity’si, DB’ye kaydedilecek veri modelidir.
-
 import com.berk.lab10.repository.UserRepository;
-// Kullanıcıyı veritabanına kaydetmek ve kontrol etmek için kullanılır.
 
 import org.springframework.beans.factory.annotation.Value;
-// application.properties veya .env içindeki değerleri okumak için kullanılır.
-
 import org.springframework.security.crypto.password.PasswordEncoder;
-// Şifrelerin hash’lenmesi için kullanılır.
-
 import org.springframework.stereotype.Controller;
-// MVC controller (HTML sayfaları döner).
-
 import org.springframework.web.bind.annotation.*;
-// Request mapping anotasyonlarını içerir.
+
+import java.util.regex.Pattern;
 
 @Controller
 public class AuthController {
 
     private final UserRepository userRepository;
-    // Register sırasında kullanıcıyı DB’ye kaydetmek için kullanılır.
-
     private final PasswordEncoder passwordEncoder;
-    // Şifreleri güvenli şekilde hash’lemek için kullanılır.
 
     @Value("${ADMIN_REGISTER_SECRET:}")
-    // Admin kayıt olmak için gereken gizli anahtar.
-    // .env veya application.properties içinden okunur.
     private String adminRegisterSecret;
+
+    // ✅ Strong password policy:
+    // - min 8
+    // - at least 1 uppercase, 1 lowercase, 1 digit, 1 special char
+    private static final Pattern STRONG_PASSWORD = Pattern.compile(
+            "^(?=.*[a-z])(?=.*[A-Z])(?=.*\\d)(?=.*[^A-Za-z\\d]).{8,}$"
+    );
 
     public AuthController(UserRepository userRepository, PasswordEncoder passwordEncoder) {
         this.userRepository = userRepository;
@@ -50,7 +45,6 @@ public class AuthController {
 
     @GetMapping("/login")
     public String loginPage(org.springframework.security.core.Authentication auth) {
-        // Eğer kullanıcı zaten login olmuşsa tekrar login sayfasına gitmesin
         if (auth != null && auth.isAuthenticated()
                 && !(auth instanceof org.springframework.security.authentication.AnonymousAuthenticationToken)) {
             return "redirect:/home";
@@ -60,7 +54,6 @@ public class AuthController {
 
     @GetMapping("/register")
     public String registerPage(org.springframework.security.core.Authentication auth) {
-        // Login olmuş kullanıcı register sayfasına erişemez
         if (auth != null && auth.isAuthenticated()
                 && !(auth instanceof org.springframework.security.authentication.AnonymousAuthenticationToken)) {
             return "redirect:/home";
@@ -79,6 +72,12 @@ public class AuthController {
         // Aynı email varsa kayıt engellenir
         if (userRepository.existsByEmail(email)) {
             return "redirect:/register?error=exists";
+        }
+
+        // ✅ Password policy check
+        if (!STRONG_PASSWORD.matcher(password).matches()) {
+            // register.html tarafında göstermek için param geçiyoruz
+            return "redirect:/register?error=weak";
         }
 
         User user = new User();
@@ -103,7 +102,6 @@ public class AuthController {
         user.setRole(finalRole);
         userRepository.save(user);
 
-        // Kayıttan sonra login sayfasına yönlendirilir
         return "redirect:/login";
     }
 }

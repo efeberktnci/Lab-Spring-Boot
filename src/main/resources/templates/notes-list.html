@@ -1,0 +1,56 @@
+<!DOCTYPE html>
+<html lang="en" xmlns:th="http://www.thymeleaf.org">
+<head>
+    <meta charset="UTF-8" />
+    <title>My Notes</title>
+</head>
+<body>
+
+<h2>My Notes</h2>
+
+<p>
+    <a href="/home">Back to Home</a> |
+    <a href="/notes/new">Add New Note</a>
+</p>
+
+<hr>
+
+<div th:if="${notes == null or #lists.isEmpty(notes)}">
+    <p>No notes yet.</p>
+</div>
+
+<table th:if="${notes != null and !#lists.isEmpty(notes)}" border="1" cellpadding="8">
+    <thead>
+    <tr>
+        <th>ID</th>
+        <th>Title</th>
+        <th>Content</th>
+        <th>Created At</th>
+        <th>Actions</th>
+    </tr>
+    </thead>
+
+    <tbody>
+    <tr th:each="n : ${notes}">
+        <td th:text="${n.id}">1</td>
+        <td th:text="${n.title}">Title</td>
+        <td th:text="${n.content}">Content</td>
+        <td th:text="${n.createdAt}">2026-01-19</td>
+
+        <td>
+            <a th:href="@{/notes/{id}/edit(id=${n.id})}">Edit</a>
+
+            <!-- Delete: POST + CSRF -->
+            <form th:action="@{/notes/{id}/delete(id=${n.id})}" method="post" style="display:inline;">
+                <input type="hidden"
+                       th:name="${_csrf.parameterName}"
+                       th:value="${_csrf.token}" />
+                <button type="submit">Delete</button>
+            </form>
+        </td>
+    </tr>
+    </tbody>
+</table>
+
+</body>
+</html>

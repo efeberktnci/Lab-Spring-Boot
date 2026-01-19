@@ -1,0 +1,46 @@
+<!DOCTYPE html>
+<html lang="en" xmlns:th="http://www.thymeleaf.org">
+<head>
+    <meta charset="UTF-8" />
+    <title th:text="${noteId != null ? 'Edit Note' : 'New Note'}">New Note</title>
+</head>
+<body>
+
+<h2 th:text="${noteId != null ? 'Edit Note' : 'New Note'}">New Note</h2>
+
+<p>
+    <a href="/notes">Back to Notes</a>
+</p>
+
+<hr>
+
+<form th:action="${noteId != null} ? @{/notes/{id}(id=${noteId})} : @{/notes}"
+      method="post"
+      th:object="${note}">
+
+    <!-- CSRF -->
+    <input type="hidden"
+           th:name="${_csrf.parameterName}"
+           th:value="${_csrf.token}" />
+
+    <div>
+        <label>Title</label><br/>
+        <input type="text" th:field="*{title}" required />
+        <div th:if="${#fields.hasErrors('title')}" th:errors="*{title}" style="color:red;"></div>
+    </div>
+
+    <br/>
+
+    <div>
+        <label>Content</label><br/>
+        <textarea th:field="*{content}" rows="6" cols="60" required></textarea>
+        <div th:if="${#fields.hasErrors('content')}" th:errors="*{content}" style="color:red;"></div>
+    </div>
+
+    <br/>
+
+    <button type="submit">Save</button>
+</form>
+
+</body>
+</html>
